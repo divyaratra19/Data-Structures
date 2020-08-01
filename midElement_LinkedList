@@ -1,0 +1,60 @@
+import java.util.*;
+import java.io.*;
+
+class Node{
+    int data;
+    Node next;
+    
+    Node(int x){
+        data = x;
+        next = null;
+    } 
+}
+class GFG{
+	static void printList(Node node) 
+	{ 
+		while (node != null) 
+		{ 
+			System.out.print(node.data + " "); 
+			node = node.next; 
+		} 
+		System.out.println(); 
+	}
+    public static void main(String args[]) throws IOException { 
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t > 0){
+        	int n = sc.nextInt();
+            Node head = new Node(sc.nextInt());
+            Node tail = head;
+            for(int i=0; i<n-1; i++)
+            {
+                tail.next = new Node(sc.nextInt());
+                tail = tail.next;
+            }
+            Solution g = new Solution();
+            int ans = g.getMiddle(head);
+            System.out.println(ans);
+            //printList(head); 
+            t--;
+        }
+    } 
+} 
+
+class Solution
+{
+    int getMiddle(Node head)
+    {
+         Node small_ptr = head; 
+        Node large_ptr = head; 
+        if (head != null) 
+         
+            while (large_ptr != null && large_ptr.next != null) 
+            { 
+                large_ptr = large_ptr.next.next; 
+                small_ptr = small_ptr.next; 
+            }          
+      return small_ptr.data;  
+    }
+    
+}
